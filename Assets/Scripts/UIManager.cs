@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour {
 
 	public GameObject gameOverPanel;
 	public Text yourScoreTxt;
-	public Text highScoreTxt;
+	//public Text highScoreTxt;
 
 	public Text scoreTxt;
 	public Text moveCounterTxt;
@@ -76,12 +76,12 @@ public class UIManager : MonoBehaviour {
 
 		gameOverPanel.SetActive(true);
 
-		if (score > PlayerPrefs.GetInt("HighScore")) {
-			PlayerPrefs.SetInt("HighScore", score);
-			highScoreTxt.text = "New Best: " + PlayerPrefs.GetInt("HighScore").ToString();
-		} else {
-			highScoreTxt.text = "Best: " + PlayerPrefs.GetInt("HighScore").ToString();
-		}
+		//if (score > PlayerPrefs.GetInt("HighScore")) {
+		//	PlayerPrefs.SetInt("HighScore", score);
+		//	highScoreTxt.text = "New Best: " + PlayerPrefs.GetInt("HighScore").ToString();
+		//} else {
+		//	highScoreTxt.text = "Best: " + PlayerPrefs.GetInt("HighScore").ToString();
+		//}
 
 		yourScoreTxt.text = score.ToString();
 	}
