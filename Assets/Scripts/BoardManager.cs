@@ -29,7 +29,7 @@ public class BoardManager : MonoBehaviour {
 		Sprite previousBelow = null;
 
 		for (int x = 0; x < xSize; x++) {
-			for (int y = 0; y < ySize; y++) {
+			for (int y = 0; y < (ySize); y++) {
 				GameObject newTile = Instantiate(tile, new Vector3(startX + (xOffset * x), startY + (yOffset * y), 0), tile.transform.rotation);
 				tiles[x, y] = newTile;
 				newTile.transform.parent = transform;
@@ -45,6 +45,13 @@ public class BoardManager : MonoBehaviour {
 
 				previousLeft[y] = newSprite;
 				previousBelow = newSprite;
+
+				// The top row will be offscreen and shouldn't interact until 
+				// it is  on screen. Part of a possible fix to the problem of
+				// things not loading correctly if a match is made near the top.
+				// if (y == ySize - 1) {
+				// 	newTile.GetComponent<BoxCollider2D> ().enabled = false;
+				// }
 			}
 		}
 	}
@@ -77,10 +84,11 @@ public class BoardManager : MonoBehaviour {
 				nullCount++;
 			}
 			renders.Add(render);
+	        // if y is ysize or less, make sure box collider is on, else make sure it's off
 		}
 
 		for (int i = 0; i < nullCount; i++) { 
-			//GUIManager.instance.Score += 50;
+			UIManager.instance.Score += 50;
 			yield return new WaitForSeconds(shiftDelay);
 			for (int k = 0; k < renders.Count - 1; k++) { 
 				renders[k].sprite = renders[k + 1].sprite;

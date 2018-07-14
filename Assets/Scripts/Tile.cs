@@ -42,7 +42,7 @@ public class Tile : MonoBehaviour {
 		isSelected = true;
 		render.color = selectedColor;
 		previousSelected = gameObject.GetComponent<Tile>();
-		//SFXManager.instance.PlaySFX(Clip.Select);
+		//AudioManager.instance.PlaySFX(Clip.Select);
 	}
 
 	private void Deselect() {
@@ -75,6 +75,8 @@ public class Tile : MonoBehaviour {
 		}
 	}
 
+
+
 	public void SwapSprite(SpriteRenderer render2) { 
 		if (render.sprite == render2.sprite) { 
 			return;
@@ -83,8 +85,8 @@ public class Tile : MonoBehaviour {
 		Sprite tempSprite = render2.sprite; 
 		render2.sprite = render.sprite; 
 		render.sprite = tempSprite; 
-		//GUIManager.instance.MoveCounter--;
-		//SFXManager.instance.PlaySFX(Clip.Swap); 
+		UIManager.instance.MoveCounter--;
+		//AudioManager.instance.PlaySFX(Clip.Swap); 
 	}
 
 	private GameObject GetAdjacent(Vector2 castDir) {
@@ -138,7 +140,7 @@ public class Tile : MonoBehaviour {
 			matchFound = false;
 			StopCoroutine(BoardManager.instance.FindNullTiles());
 			StartCoroutine(BoardManager.instance.FindNullTiles());
-			//SFXManager.instance.PlaySFX(Clip.Clear);
+			//AudioManager.instance.PlaySFX(Clip.Clear);
 		}
 	}
 }
