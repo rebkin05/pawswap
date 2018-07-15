@@ -55,6 +55,9 @@ public class Tile : MonoBehaviour {
 		if (render.sprite == null || BoardManager.instance.IsShifting) {
 			return;
 		}
+		if (GameManager.instance.gameOver == true) {
+			return;
+		}
 
 		if (isSelected) {
 			Deselect();
